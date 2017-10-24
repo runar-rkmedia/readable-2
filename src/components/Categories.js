@@ -1,0 +1,37 @@
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import { getCategories } from '../actions'
+import { connect } from 'react-redux'
+
+class Categories extends Component {
+
+  render() {
+
+    return (
+      <div className='col-sm-4'>
+        {this.props.categories.map((category, i) => (
+          <div key={i} className='category-list'>
+            <Link to={`/${category.path}`}>
+              <h3 className='category-name'>{category.name}</h3>
+            </Link>
+          </div>
+        ))}
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = ({ categories }) => {
+  return { categories: categories || [] }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getCategories: () => dispatch(getCategories())
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Categories)
