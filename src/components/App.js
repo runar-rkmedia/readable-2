@@ -9,17 +9,14 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="row">
+      <div className='container'>
           <Route exact path='/' render={() => (
             <Categories />
           )}/>
 
-          <Route exact path="/:category" render={() => (
+          <Route exact path='/:category' render={() => (
             <CategoryView />
           )}/>
-
-        </div>
       </div>
     );
   }

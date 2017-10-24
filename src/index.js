@@ -1,4 +1,5 @@
 import React from 'react'
+import registerServiceWorker from './registerServiceWorker';
 import 'bootstrap/dist/css/bootstrap.css'
 import { Provider } from 'react-redux'
 import ReactDOM from 'react-dom'
@@ -14,3 +15,4 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 )
+registerServiceWorker();

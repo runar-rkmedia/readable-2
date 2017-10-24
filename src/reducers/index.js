@@ -1,5 +1,8 @@
+import { combineReducers } from 'redux'
+
 import {
   GET_ALL_CATEGORIES,
+  GET_ALL_POSTS
 } from '../actions'
 
 const initialState = {
@@ -18,4 +21,19 @@ function categories (state = initialState, action) {
   }
 }
 
-export default categories
+function posts (state = [], action) {
+  switch (action.type) {
+    case GET_ALL_POSTS :
+      return {
+        ...state,
+        posts: action.posts
+      }
+    default :
+      return state
+  }
+}
+
+export default combineReducers({
+  categories,
+  posts
+});
