@@ -1,28 +1,33 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
+import { connect } from 'react-redux'
 import '../css/App.css'
 
 import Categories from './Categories'
+import Posts from './Posts'
 import CategoryView from './categoryView'
 
 class App extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="row">
+      <div className='container'>
           <Route exact path='/' render={() => (
-            <Categories />
+            <div className='row'>
+              <Categories />
+              <Posts />
+            </div>
           )}/>
 
-          <Route exact path="/:category" render={() => (
+          <Route exact path='/:category' render={() => (
             <CategoryView />
           )}/>
-
-        </div>
       </div>
     );
   }
 }
 
-export default App;
+export default connect(
+  null,
+  null
+)(App)

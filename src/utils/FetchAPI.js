@@ -12,7 +12,12 @@ const headers = {
   'Authorization': token
 }
 
+export const getAllPosts = () =>
+  axios.get(`${url}/posts`, { headers })
+    .then(posts => posts.data
+    .filter(post => !post.deleted))
+
 export const getCategories = () =>
   axios.get(`${url}/categories`, { headers })
-  .then(res => res.data.categories)
-  .catch(error => error);
+    .then(res => res.data.categories)
+    .catch(error => error);
