@@ -12,14 +12,7 @@ const headers = {
   'Authorization': token
 }
 
-// export const fetchCategories = () => {
-//   return axios.get(`${url}/categories`, { headers })
-// }
-
-
-export const fetchCategories = () =>
-  fetch(`${url}/categories`, { headers })
-    .then(
-      res => res.json(),
-      error => alert( `Error in fetching categories: ${error}`)
-    )
+export const getCategories = () =>
+  axios.get(`${url}/categories`, { headers })
+  .then(res => res.data.categories)
+  .catch(error => error);
