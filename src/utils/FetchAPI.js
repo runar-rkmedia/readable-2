@@ -14,10 +14,10 @@ const headers = {
 
 export const getAllPosts = () =>
   axios.get(`${url}/posts`, { headers })
-  .then(res => res.data.posts)
-  .catch(error => error);
+    .then(posts => posts.data
+    .filter(post => !post.deleted))
 
 export const getCategories = () =>
   axios.get(`${url}/categories`, { headers })
-  .then(res => res.data.categories)
-  .catch(error => error);
+    .then(res => res.data.categories)
+    .catch(error => error);

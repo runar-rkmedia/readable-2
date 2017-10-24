@@ -1,12 +1,23 @@
 import React, { Component } from 'react'
-import { getAllPosts } from '../actions'
 import { connect } from 'react-redux'
+import { getAllPosts } from '../actions'
 
 class Posts extends Component {
+
+  componentDidMount () {
+    this.props.getAllPosts()
+  }
+
   render() {
+    const { posts } = this.props
+
     return (
       <div className='col-sm-9'>
-        <h3>All Posts</h3>
+        {posts.map((post, i) => (
+          <div key={i} className='category-list'>
+            <h5 className='category-name'>{post.title}</h5>
+          </div>
+        ))}
       </div>
     );
   }
@@ -14,13 +25,11 @@ class Posts extends Component {
 
 
 const mapStateToProps = ({ posts }) => {
-  return { posts: posts || [] }
+  return { posts: posts.posts || [] }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    getAllPosts: () => dispatch(getAllPosts())
-  }
+  return { getAllPosts: () => dispatch(getAllPosts()) }
 }
 
 export default connect(
