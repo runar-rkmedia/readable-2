@@ -4,7 +4,7 @@ let token = localStorage.token
 if (!token)
   token = localStorage.token = Math.random().toString(36).substr(-8)
 
-const url = 'http://localhost:3002'
+const url = 'http://localhost:3001'
 
 const headers = {
   'Accept': 'application/json',
