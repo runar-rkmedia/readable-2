@@ -12,6 +12,12 @@ const headers = {
   'Authorization': token
 }
 
+export const commentGetByParent = (postID) =>
+  axios.get(`${url}/posts/${postID}/comments`, { headers })
+    .then(comments => comments.data
+      .sort((a, b) => b.voteScore - a.voteScore)
+      .filter(comment => !comment.deleted))
+
 export const getAllPosts = () =>
   axios.get(`${url}/posts`, { headers })
     .then(posts => posts.data

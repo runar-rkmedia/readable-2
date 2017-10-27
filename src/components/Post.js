@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getPost } from '../actions'
 import { Link } from 'react-router-dom'
+import Comments from './Comments'
+
 
 class Post extends Component {
 
@@ -27,6 +29,12 @@ class Post extends Component {
         <p>
           { post.body }
         </p>
+
+        <hr />
+        <Comments
+          key={ post.id }
+          postID={ post.id }
+        />
       </div>
     );
   }

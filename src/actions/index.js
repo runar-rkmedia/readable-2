@@ -11,7 +11,6 @@ export function getCategories() {
   )}
 }
 
-
 export const GET_ALL_POSTS = 'GET_ALL_POSTS'
 export function getAllPosts() {
   return dispatch => {
@@ -41,6 +40,17 @@ export function getPost(postID) {
       .then(post => dispatch({
         type: GET_SINGLE_POST,
         post
+      })
+  )}
+}
+
+export const GET_COMMENTS_BY_POST = 'GET_COMMENTS_BY_POST'
+export function commentGetByParent(postID) {
+  return dispatch => {
+    FetchAPI.commentGetByParent(postID)
+      .then(comments => dispatch({
+        type: GET_COMMENTS_BY_POST,
+        comments
       })
   )}
 }
