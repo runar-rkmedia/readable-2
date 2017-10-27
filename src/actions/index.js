@@ -27,10 +27,7 @@ export const GET_CATEGORY_POSTS = 'GET_CATEGORY_POSTS'
 export function getByCategory(category) {
   return dispatch => {
     FetchAPI.getByCategory(category)
-      .then(posts => dispatch({
-        type: GET_CATEGORY_POSTS,
-        posts
-      })
+      .then(posts => dispatch({ type: GET_CATEGORY_POSTS, posts })
   )}
 }
 
@@ -38,9 +35,17 @@ export const GET_SINGLE_POST = 'GET_SINGLE_POST'
 export function getPost(postID) {
   return dispatch => {
     FetchAPI.getPost(postID)
-      .then(post => dispatch({
-        type: GET_SINGLE_POST,
-        post
+      .then(post => dispatch({ type: GET_SINGLE_POST, post }))
+  }
+}
+
+export const GET_COMMENTS_BY_POST = 'GET_COMMENTS_BY_POST'
+export function commentGetByParent(postID) {
+  return dispatch => {
+    FetchAPI.commentGetByParent(postID)
+      .then(comments => dispatch({
+        type: GET_COMMENTS_BY_POST,
+        comments
       })
   )}
 }
