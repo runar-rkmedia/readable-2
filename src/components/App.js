@@ -1,27 +1,47 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import '../css/App.css'
 
+
 import Categories from './Categories'
 import Posts from './Posts'
-import CategoryView from './categoryView'
+import Post from './Post'
+import CategoryPosts from './CategoryPosts'
 
 class App extends Component {
 
   render() {
     return (
       <div className='container'>
-          <Route exact path='/' render={() => (
-            <div className='row'>
-              <Categories />
-              <Posts />
-            </div>
-          )}/>
+        <Router>
+          <Switch>
+            <Route exact path='/' render={() => (
+              <div className='row'>
+                <Categories />
+                <Posts />
+              </div>
+            )}/>
 
-          <Route exact path='/:category' render={() => (
-            <CategoryView />
-          )}/>
+            <Route exact path='/:category/posts' render={(props) => (
+              <div className='row'>
+                <Categories />
+                <CategoryPosts {...props} />
+              </div>
+            )}/>
+
+            <Route path='/posts/:id'  render={props =>  (
+              <div className='row'>
+                <Categories />
+                <Post {...props} />
+              </div>
+            )}/>
+
+          </Switch>
+        </Router>
       </div>
     );
   }

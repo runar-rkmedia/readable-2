@@ -1,5 +1,6 @@
 import {
-  GET_ALL_POSTS
+  GET_ALL_POSTS,
+  GET_CATEGORY_POSTS,
 } from '../actions'
 
 const initialState = {
@@ -12,6 +13,10 @@ function posts (state = initialState, action) {
     case GET_ALL_POSTS :
       return {
         ...state,
+        posts: posts
+      }
+    case GET_CATEGORY_POSTS :
+      return {
         posts: posts
       }
     default :
