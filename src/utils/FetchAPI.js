@@ -15,9 +15,20 @@ const headers = {
 export const getAllPosts = () =>
   axios.get(`${url}/posts`, { headers })
     .then(posts => posts.data
-    .filter(post => !post.deleted))
+      .sort((a, b) => b.voteScore - a.voteScore)
+      .filter(post => !post.deleted))
+
+export const getByCategory = (category) =>
+  axios.get(`${url}/${category}/posts`, { headers })
+    .then(posts => posts.data
+      .sort((a, b) => b.voteScore - a.voteScore)
+      .filter(post => !post.deleted))
 
 export const getCategories = () =>
   axios.get(`${url}/categories`, { headers })
     .then(res => res.data.categories)
     .catch(error => error);
+
+export const getPost = (postID) =>
+  axios.get(`${url}/posts/${postID}`, { headers })
+    .then(post => post.data)

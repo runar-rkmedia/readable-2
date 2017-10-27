@@ -1,35 +1,54 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getAllPosts } from '../actions'
+import { getAllPosts, getByCategory } from '../actions'
+import { Link } from 'react-router-dom'
+import Moment from 'react-moment'
 
 class Posts extends Component {
 
   componentDidMount () {
-    this.props.getAllPosts()
+    const categoryTitle = this.props.categoryTitle
+    if (!categoryTitle) {
+      this.props.getAllPosts()
+    } else {
+      this.props.getByCategory(categoryTitle)
+    }
   }
 
   render() {
-    const { posts } = this.props
+
+   const { posts } = this.props
 
     return (
       <div className='col-sm-9'>
         {posts.map((post, i) => (
           <div key={i} className='category-list'>
-            <h5 className='category-name'>{post.title}</h5>
+            <h5 className='post-name'>({ post.voteScore })
+              <Link to={`/posts/${post.id}`}>
+                { post.title }
+              </Link>
+            </h5>
+            <p className='meta text-muted'>Comment { post.commentCount }, | Category { post.category }  | Posted <Moment>{ post.timestamp }</Moment> </p>
           </div>
         ))}
+        <h6>
+          <Link to={`/`} className="btn btn-success" key='Home'>
+            See all
+          </Link>
+        </h6>
       </div>
     );
   }
 }
-
 
 const mapStateToProps = ({ posts }) => {
   return { posts: posts.posts || [] }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return { getAllPosts: () => dispatch(getAllPosts()) }
+  return {
+    getAllPosts: () => dispatch(getAllPosts()),
+    getByCategory: (id) => dispatch(getByCategory(id))  }
 }
 
 export default connect(
