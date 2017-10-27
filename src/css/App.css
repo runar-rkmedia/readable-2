@@ -24,3 +24,8 @@ a:focus {
 .category-name {
   text-transform: capitalize;
 }
+
+.meta {
+  font-size: 12px;
+  text-transform: capitalize;
+}

@@ -4,7 +4,7 @@ import { getPost } from '../actions'
 import { Link } from 'react-router-dom'
 
 class Post extends Component {
-  
+
   componentDidMount () {
     this.props.getPost(this.props.match.params.id)
   }
@@ -15,7 +15,7 @@ class Post extends Component {
     return (
       <div className='col-sm-9'>
         <h5>{ post.title }</h5>
-        <span className='text-muted'>
+        <span className='meta text-muted'>
           Author { post.author },
           Category
           <Link to={`/${ post.category }/posts`} key={ post.category }>

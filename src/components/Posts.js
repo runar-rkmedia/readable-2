@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getAllPosts, getByCategory } from '../actions'
 import { Link } from 'react-router-dom'
+import Moment from 'react-moment'
 
 class Posts extends Component {
 
@@ -27,7 +28,7 @@ class Posts extends Component {
                 { post.title }
               </Link>
             </h5>
-            <p>Comment { post.commentCount },  Category { post.category }</p>
+            <p className='meta text-muted'>Comment { post.commentCount }, | Category { post.category }  | Posted <Moment>{ post.timestamp }</Moment> </p>
           </div>
         ))}
         <h6>
