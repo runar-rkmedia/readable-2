@@ -15,13 +15,26 @@ class Comments extends Component {
     return (
       <div className='row'>
         <div className='col-sm-12'>
-          {comments.map((comment, i) => (
-            <div key={i} className='comment-list'>
-              <p>{ comment.body }</p>
-              <p className='meta text-muted'>Votes { comment.voteScore }, | Author { comment.author }  | Posted <Moment>{ comment.timestamp }</Moment> </p>
+          <section className="comments">
+            {comments.map((comment, i) => (
+              <article key={i}  className="comment">
+                <a className="comment-img" href="#none">
+                  <img src="/user-pic.png" alt="" width="50" height="50" />
+                </a>
 
-            </div>
-          ))}
+                <div className="comment-body">
+                  <div className="text">
+                    <p>{ comment.body }</p>
+                  </div>
+                  <p className='meta text-muted attribution'>
+                    Votes { comment.voteScore }, |
+                    Author { comment.author }  |
+                    Posted <Moment>{ comment.timestamp }</Moment>
+                  </p>
+                </div>
+              </article>
+            ))}
+          </section>​
         </div>
       </div>
     );
