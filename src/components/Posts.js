@@ -8,6 +8,10 @@ import '../css/Posts.css'
 
 class Posts extends Component {
 
+   state = {
+      posts: [],
+    }
+
   componentDidMount () {
     const categoryTitle = this.props.categoryTitle
     if (!categoryTitle) {
@@ -17,13 +21,43 @@ class Posts extends Component {
     }
   }
 
+  filterPosts(event) {
+    switch (event) {
+     case 'votes':
+       this.setState(this.props.posts.sort((a, b) => a.voteScore - b.voteScore))
+       break;
+     case 'posted':
+       this.setState(this.props.posts.sort((a, b) => a.timestamp - b.timestamp))
+       break;
+     default:
+       this.setState(this.props.posts.sort((a, b) => b.voteScore - a.voteScore))
+     }
+  }
+
+
   render() {
 
    const { posts } = this.props
+   const hasPosts = posts.length > 0
 
     return (
       <div className='col-sm-9 text-center'>
-      {posts.length > 0 ? posts.map((post, i) => (
+
+        <div className='row justify-content-end'>
+          <div className="form-group">
+            <select
+              value={this.props.value}
+              onChange={(e) => this.filterPosts(e.target.value)}
+              className="form-control"
+              >
+              <option value=''>Most Votes</option>
+              <option value='votes' >List Voted</option>
+              <option value='posted'>Date Posted</option>
+            </select>
+          </div>
+        </div>
+
+      {hasPosts ? posts.map((post, i) => (
           <div key={i} className='post-list'>
             <h3 className='post-name'>
               <Link to={`/posts/${post.id}`}>
