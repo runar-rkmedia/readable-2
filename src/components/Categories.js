@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getCategories } from '../actions'
 
+import '../css/Landing.css'
+
 class Categories extends Component {
 
   componentDidMount () {
@@ -11,24 +13,29 @@ class Categories extends Component {
 
   handleClick = () => {
     this.props.history.push('/:category/posts');
-   };
+  };
 
   render() {
     const { categories } = this.props
 
     return (
-      <div className='row'>
-        <div className='col-sm-3'>
+      <div className='col-sm-3'>
+        <div  className='category-list'>
+
           {categories.map((category, i) => (
-            <div key={i} className='category-list'>
+            <div key={i}>
               <Link
                 onClick={this.handleClick}
                 to={`/${category.path}/posts`}
-                key={category.id}>
-                <h3 className='category-name'>{category.name}</h3>
+                key={category.id}
+                className='category-name'>
+                  <h3 className='menu__item-name'>{category.name}</h3>
               </Link>
             </div>
           ))}
+          <Link to={`/`} className="btn btn-sm btn-block btn-outline-danger" key='Home'>
+            All Posts
+          </Link>
         </div>
       </div>
     );

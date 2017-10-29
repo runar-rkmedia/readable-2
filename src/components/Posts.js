@@ -4,6 +4,8 @@ import { getAllPosts, getByCategory } from '../actions'
 import { Link } from 'react-router-dom'
 import Moment from 'react-moment'
 
+import '../css/Posts.css'
+
 class Posts extends Component {
 
   componentDidMount () {
@@ -20,22 +22,26 @@ class Posts extends Component {
    const { posts } = this.props
 
     return (
-      <div className='col-sm-9'>
-        {posts.map((post, i) => (
-          <div key={i} className='category-list'>
-            <h5 className='post-name'>({ post.voteScore })
+      <div className='col-sm-9 text-center'>
+      {posts.length > 0 ? posts.map((post, i) => (
+          <div key={i} className='post-list'>
+            <h3 className='post-name'>
               <Link to={`/posts/${post.id}`}>
                 { post.title }
               </Link>
-            </h5>
-            <p className='meta text-muted'>Comment { post.commentCount }, | Category { post.category }  | Posted <Moment>{ post.timestamp }</Moment> </p>
+            </h3>
+            <div className='meta text-muted'>
+              Comment { post.commentCount } »
+              Category { post.category }  »
+              Published <Moment fromNow>{ post.timestamp }</Moment>  »
+              Votes (<span data-negative>{ post.voteScore }</span>)</div>
           </div>
-        ))}
-        <h6>
-          <Link to={`/`} className="btn btn-success" key='Home'>
-            See all
-          </Link>
-        </h6>
+        )) : (
+          <div className='noComments'>
+            <h4>No posts yet ...</h4>
+          </div>
+       )}
+
       </div>
     );
   }
