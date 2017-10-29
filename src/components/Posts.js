@@ -49,6 +49,7 @@ class Posts extends Component {
               value={this.props.value}
               onChange={(e) => this.filterPosts(e.target.value)}
               className="form-control"
+              disabled={!hasPosts}
               >
               <option value=''>Most Votes</option>
               <option value='votes' >List Voted</option>
