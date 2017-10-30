@@ -20,13 +20,11 @@ export const commentGetByParent = (postID) =>
 
 export const getAllPosts = () =>
   axios.get(`${url}/posts`, { headers })
-    .then(posts => posts.data
-      .filter(post => !post.deleted))
+    .then(posts => posts.data)
 
 export const getByCategory = (category) =>
   axios.get(`${url}/${category}/posts`, { headers })
-    .then(posts => posts.data
-      .filter(post => !post.deleted))
+    .then(posts => posts.data)
 
 export const getCategories = () =>
   axios.get(`${url}/categories`, { headers })

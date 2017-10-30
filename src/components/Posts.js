@@ -34,7 +34,6 @@ class Posts extends Component {
      }
   }
 
-
   render() {
 
    const { posts } = this.props
@@ -83,7 +82,7 @@ class Posts extends Component {
 }
 
 const mapStateToProps = ({ posts }) => {
-  return { posts: posts.posts || [] }
+  return { posts: posts || [] }
 }
 
 const mapDispatchToProps = (dispatch) => {
