@@ -11,6 +11,7 @@ import Categories from './Categories'
 import Posts from './Posts'
 import Post from './Post'
 import CategoryPosts from './CategoryPosts'
+import OpenAddPost from './OpenAddPost'
 
 class App extends Component {
 
@@ -23,6 +24,7 @@ class App extends Component {
               <div className='row'>
                 <Categories />
                 <Posts />
+                <OpenAddPost />
               </div>
             )}/>
 

@@ -3,3 +3,21 @@
   border: 3px solid #0d49a3;
   padding: 20px;
 }
+
+.add-posts {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+}
+.add-posts a {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #ff3535;
+  background-image: url('icons/add.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px;
+  font-size: 0;
+}
