@@ -10,7 +10,6 @@ class Post extends Component {
 
   componentDidMount () {
     this.props.getPost(this.props.match.params.id)
-
   }
 
   render() {

@@ -12,7 +12,7 @@ function categories (state = initialState, action) {
     case GET_ALL_CATEGORIES :
       return {
         ...state,
-        categories: categories
+        categories
       }
     default :
       return state
