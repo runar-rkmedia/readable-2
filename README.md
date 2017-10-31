@@ -24,3 +24,7 @@ For more information about using Node.js on Heroku, see these Dev Center article
 - [Instal Node](https://nodejs.org/en/download/)
 - [npm](https://www.npmjs.com/)
 - [ReactJS](https://reactjs.org/)
+
+
+## Sources
+- [A generic handleChange function for React forms](https://hjnilsson.com/2016/12/11/generic-form-handleChange-in-react/)

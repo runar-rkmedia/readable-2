@@ -12,6 +12,7 @@ import Posts from './Posts'
 import Post from './Post'
 import CategoryPosts from './CategoryPosts'
 import OpenAddPost from './OpenAddPost'
+import CreatePost from './CreatePost'
 
 class App extends Component {
 
@@ -38,6 +39,12 @@ class App extends Component {
               <div className='row'>
                 <Categories />
                 <Post {...props} />
+              </div>
+            )}/>
+
+            <Route path='/post/create'  render={props =>  (
+              <div className='row'>
+                <CreatePost />
               </div>
             )}/>
 

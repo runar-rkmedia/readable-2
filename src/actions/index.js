@@ -44,6 +44,17 @@ export function getPost(postID) {
   )}
 }
 
+export const CREATE_POST = 'CREATE_POST'
+export function createPost(post) {
+  return dispatch => {
+    FetchAPI.createPost(post)
+      .then(post => dispatch({
+        type: CREATE_POST,
+        post
+      })
+  )}
+}
+
 export const GET_COMMENTS_BY_POST = 'GET_COMMENTS_BY_POST'
 export function commentGetByParent(postID) {
   return dispatch => {

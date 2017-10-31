@@ -53,3 +53,23 @@ a:focus {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Arapey', serif;
 }
+
+input,
+textarea {
+  font: 11px system-ui;
+  border: none !important;
+  border-bottom: 1px dashed #999 !important;
+  border-radius: 0px !important;
+}
+
+select {
+  font: 11px system-ui;
+  border: none !important;
+  border-bottom: none !important;
+  border-radius: 0px !important;
+  text-transform: capitalize !important;
+}
+
+.form-group {
+  margin-bottom: 3rem !important;
+}

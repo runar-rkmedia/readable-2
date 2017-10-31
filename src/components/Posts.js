@@ -27,7 +27,7 @@ class Posts extends Component {
        this.setState(this.props.posts.sort((a, b) => a.voteScore - b.voteScore))
        break;
      case 'posted':
-       this.setState(this.props.posts.sort((a, b) => a.timestamp - b.timestamp))
+       this.setState(this.props.posts.sort((a, b) => b.timestamp - a.timestamp))
        break;
      default:
        this.setState(this.props.posts.sort((a, b) => b.voteScore - a.voteScore))
@@ -68,7 +68,7 @@ class Posts extends Component {
               Comment { post.commentCount } »
               Category { post.category }  »
               Published <Moment fromNow>{ post.timestamp }</Moment>  »
-              Votes (<span data-negative>{ post.voteScore }</span>)</div>
+              Votes { post.voteScore }</div>
           </div>
         )) : (
           <div className='noComments'>
