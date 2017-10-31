@@ -34,3 +34,8 @@ export const getCategories = () =>
 export const getPost = (postID) =>
   axios.get(`${url}/posts/${postID}`, { headers })
     .then(post => post.data)
+
+
+export const createPost = (post) =>
+  axios.post(`${url}/posts`,{ ...post}, { headers })
+    .then(post => post.data)

@@ -5,7 +5,7 @@ class OpenAddPost extends Component {
   render() {
     return (
       <div className="add-posts">
-        <Link to='/'>Add a book</Link>
+        <Link to='/post/create'>Add a post</Link>
       </div>
     );
   }

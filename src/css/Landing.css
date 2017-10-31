@@ -21,3 +21,21 @@
   background-size: 28px;
   font-size: 0;
 }
+
+.back-home {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+}
+.back-home a {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #0d49a3;
+  background-image: url('icons/back.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 18px;
+  font-size: 0;
+}

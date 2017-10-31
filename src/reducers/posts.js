@@ -1,6 +1,6 @@
 import {
   GET_ALL_POSTS,
-  GET_CATEGORY_POSTS,
+  GET_CATEGORY_POSTS
 } from '../actions'
 
 const initialState = {
