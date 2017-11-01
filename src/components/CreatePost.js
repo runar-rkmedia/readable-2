@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { createPost } from '../actions'
 import serializeForm from 'form-serialize'
 import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import {
   Button,
   Form,
@@ -35,21 +36,26 @@ class CreatePost extends Component {
     return title !== '' && body !== '' && author !== '' ;
   };
 
-   handleSubmit = (event) => {
-     event.preventDefault()
+  redirectHome(){
+    this.props.history.push('/');
+  }
 
-     if (this.validForm()) {
-       const values = serializeForm(event.target, {hash: true })
-       values["timestamp"] = Date.now()
-       values["id"] = Date.now()
+  handleSubmit = (event) => {
+    event.preventDefault()
 
-       this.props.createPost(values)
+    if (this.validForm()) {
+      const values = serializeForm(event.target, {hash: true })
+      values["timestamp"] = Date.now()
+      values["id"] = Date.now()
 
-      } else {
-        this.setState({  hasError: true });
-        console.log ('this has some errors ')
-      }
-   };
+      this.props.createPost(values)
+      this.redirectHome()
+
+    } else {
+      this.setState({  hasError: true });
+      console.log ('this has some errors ')
+    }
+  };
 
 
   render() {
@@ -137,7 +143,8 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(
+
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(CreatePost)
+)(CreatePost))
