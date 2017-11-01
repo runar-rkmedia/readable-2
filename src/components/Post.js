@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getPost } from '../actions'
+import { getPost, deletePost } from '../actions'
 import { Link } from 'react-router-dom'
 import Comments from './Comments'
+import { Button } from 'reactstrap'
 
 import '../css/Post.css'
 
@@ -10,6 +11,11 @@ class Post extends Component {
 
   componentDidMount () {
     this.props.getPost(this.props.match.params.id)
+  }
+
+  handleRemove = () => {
+    this.props.deletePost(this.props.post.id)
+    this.props.history.push('/')
   }
 
   render() {
@@ -31,6 +37,12 @@ class Post extends Component {
           <p>
             { post.body }
           </p>
+          <Button
+            color='info'
+            size='sm'
+            onClick={ this.handleRemove }>
+              Delete Post!
+          </Button>
         </div>
         <div className='category-title rotate-title'>
           <h1>
@@ -64,7 +76,10 @@ const mapStateToProps = ({ post }) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
- return { getPost: (id) => dispatch(getPost(id)) }
+ return {
+   getPost: (id) => dispatch(getPost(id)),
+   deletePost: (id) => dispatch(deletePost(id))
+ }
 }
 
 export default connect(

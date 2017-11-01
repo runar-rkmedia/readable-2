@@ -55,6 +55,17 @@ export function createPost(post) {
   )}
 }
 
+export const DELETE_POST = 'DELETE_POST'
+export function deletePost(post) {
+  return dispatch => {
+    FetchAPI.deletePost(post)
+      .then(post => dispatch({
+        type: DELETE_POST,
+        post
+      })
+  )}
+}
+
 export const GET_COMMENTS_BY_POST = 'GET_COMMENTS_BY_POST'
 export function commentGetByParent(postID) {
   return dispatch => {

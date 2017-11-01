@@ -35,7 +35,9 @@ export const getPost = (postID) =>
   axios.get(`${url}/posts/${postID}`, { headers })
     .then(post => post.data)
 
-
 export const createPost = (post) =>
   axios.post(`${url}/posts`,{ ...post}, { headers })
     .then(post => post.data)
+
+export const deletePost = (post) =>
+  axios.delete(`${url}/posts/${post}`, { headers })
