@@ -55,6 +55,17 @@ export function createPost(post) {
   )}
 }
 
+export const EDIT_POST = 'EDIT_POST'
+export function editPost({ postID, title, body }) {
+  return dispatch => {
+    FetchAPI.editPost({ postID, title, body })
+      .then(post => dispatch({
+        type: EDIT_POST,
+        post
+      })
+  )}
+}
+
 export const DELETE_POST = 'DELETE_POST'
 export function deletePost(post) {
   return dispatch => {

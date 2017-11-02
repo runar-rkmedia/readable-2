@@ -9,7 +9,7 @@ import '../css/Posts.css'
 class Posts extends Component {
 
    state = {
-      posts: [],
+      posts: []
     }
 
   componentDidMount () {

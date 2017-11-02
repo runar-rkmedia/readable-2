@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Posts from './Posts'
 import Categories from './Categories'
 
-
 import '../css/Posts.css'
 
 class CategoryPosts extends Component {

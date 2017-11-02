@@ -6,7 +6,6 @@ import {
 import { connect } from 'react-redux'
 import '../css/App.css'
 
-
 import Categories from './Categories'
 import Posts from './Posts'
 import Post from './Post'
@@ -28,26 +27,18 @@ class App extends Component {
                 <OpenAddPost />
               </div>
             )}/>
-
             <Route exact path='/:category/posts' render={(props) => (
               <div>
                 <CategoryPosts {...props} />
               </div>
             )}/>
-
             <Route path='/posts/:id'  render={props =>  (
               <div className='row'>
                 <Categories />
                 <Post {...props} />
               </div>
             )}/>
-
-            <Route path='/post/create'  render={props =>  (
-              <div className='row'>
-                <CreatePost />
-              </div>
-            )}/>
-
+            <Route exact path="/post/create" component={ CreatePost } />
           </Switch>
         </Router>
       </div>

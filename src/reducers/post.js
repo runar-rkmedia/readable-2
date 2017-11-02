@@ -1,7 +1,8 @@
 import {
   GET_SINGLE_POST,
   CREATE_POST,
-  DELETE_POST
+  DELETE_POST,
+  EDIT_POST
 } from '../actions'
 
 
@@ -13,6 +14,10 @@ function post (state = {}, action) {
         ...post
       }
     case CREATE_POST:
+      return {
+        ...post
+      }
+    case EDIT_POST :
       return {
         ...post
       }

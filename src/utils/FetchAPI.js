@@ -39,5 +39,9 @@ export const createPost = (post) =>
   axios.post(`${url}/posts`,{ ...post}, { headers })
     .then(post => post.data)
 
+export const editPost = ({postID, title, body}) =>
+  axios.put(`${url}/posts/${postID}`, { title, body }, { headers })
+  .then(post => post.data)
+
 export const deletePost = (post) =>
   axios.delete(`${url}/posts/${post}`, { headers })
