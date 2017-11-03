@@ -4,6 +4,7 @@ import { getPost, deletePost, editPost  } from '../actions'
 import { Link, withRouter } from 'react-router-dom'
 import serializeForm from 'form-serialize'
 import Comments from './Comments'
+import CommentForm from './CommentForm'
 import {
   Button,
   Modal,
@@ -100,6 +101,9 @@ class Post extends Component {
           </h1>
         </div>
 
+        <CommentForm
+          parentId={ post.id }/>
+
         <div className='commentsHeading'>Comments</div>
         {hasComments > 0 ? (
           <Comments
@@ -111,8 +115,10 @@ class Post extends Component {
             <h4>No comments yet ...</h4>
           </div>
         )}
+
+
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>{ post.title }</ModalHeader>
+          <ModalHeader toggle={this.toggle}>{ this.state.title }</ModalHeader>
           <ModalBody>
             <Form onSubmit={ this.handleSubmit }>
               <FormGroup>
@@ -155,7 +161,7 @@ class Post extends Component {
                   onChange={ this.handleChange }
                   value={ post.author }/>
               </FormGroup>
-              <Button color='success' size='lg' block disabled={emptyFields}>Submit</Button>
+              <Button color='success' size='lg' block disabled={emptyFields}>Submit Comment</Button>
             </Form>
           </ModalBody>
         </Modal>
