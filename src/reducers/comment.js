@@ -1,5 +1,6 @@
 import {
-  CREATE_COMMENT
+  CREATE_COMMENT,
+  DELETE_COMMENT
 } from '../actions'
 
 function comment (state = {}, action) {
@@ -10,6 +11,8 @@ function comment (state = {}, action) {
         state,
         ...comment
       }
+    case DELETE_COMMENT :
+      return { ...comment }
     default :
       return state
   }
