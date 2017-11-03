@@ -22,6 +22,9 @@ export const createComment = (comment) =>
   axios.post(`${url}/comments`, { ...comment}, { headers })
     .then(comment => comment.data)
 
+export const deleteComment = (commentID) =>
+  axios.delete(`${url}/comments/${commentID}`, { headers })
+
 export const getAllPosts = () =>
   axios.get(`${url}/posts`, { headers })
     .then(posts => posts.data)

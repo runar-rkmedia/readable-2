@@ -1,12 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { commentGetByParent } from '../actions'
+import {
+  commentGetByParent,
+  deleteComment } from '../actions'
 import Moment from 'react-moment'
+import { Button } from 'reactstrap'
 
 class Comments extends Component {
 
   componentDidMount () {
     this.props.commentGetByParent(this.props.postID)
+  }
+
+  handleRemove = (event) => {
+    this.props.deleteComment(event.target.value)
+    window.location.reload()
   }
 
   render() {
@@ -29,7 +37,15 @@ class Comments extends Component {
                   <p className='meta text-muted attribution'>
                     Votes { comment.voteScore }, |
                     Author { comment.author }  |
-                    Posted <Moment>{ comment.timestamp }</Moment>
+                    Posted <Moment>{ comment.timestamp }</Moment>   |
+                    { ' ' }
+                    <Button
+                      color='link'
+                      size='sm'
+                      onClick={ this.handleRemove}
+                      value={comment.id}>
+                        Delete
+                    </Button>
                   </p>
                 </div>
               </article>
@@ -46,7 +62,10 @@ const mapStateToProps = ({ comments }) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return { commentGetByParent: (postID) => dispatch(commentGetByParent(postID)) }
+  return {
+    commentGetByParent: (postID) => dispatch(commentGetByParent(postID)),
+    deleteComment: (commentID) => dispatch(deleteComment(commentID))
+  }
 }
 
 export default connect(

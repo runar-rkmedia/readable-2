@@ -98,3 +98,14 @@ export function createComment(comment) {
       })
   )}
 }
+
+export const DELETE_COMMENT = 'DELETE_COMMENT'
+export function deleteComment(commentID) {
+  return dispatch => {
+    FetchAPI.deleteComment(commentID)
+      .then(post => dispatch({
+        type: DELETE_COMMENT,
+        post
+      })
+  )}
+}
