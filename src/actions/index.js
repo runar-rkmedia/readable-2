@@ -87,3 +87,14 @@ export function commentGetByParent(postID) {
       })
   )}
 }
+
+export const CREATE_COMMENT = 'CREATE_COMMENT'
+export function createComment(comment) {
+  return dispatch => {
+    FetchAPI.createComment(comment)
+      .then(comment => dispatch({
+        type: CREATE_COMMENT,
+        comment
+      })
+  )}
+}

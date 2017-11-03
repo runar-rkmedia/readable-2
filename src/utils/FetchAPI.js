@@ -18,6 +18,10 @@ export const commentGetByParent = (postID) =>
       .sort((a, b) => b.voteScore - a.voteScore)
       .filter(comment => !comment.deleted))
 
+export const createComment = (comment) =>
+  axios.post(`${url}/comments`, { ...comment}, { headers })
+    .then(comment => comment.data)
+
 export const getAllPosts = () =>
   axios.get(`${url}/posts`, { headers })
     .then(posts => posts.data)

@@ -5,7 +5,6 @@ import {
   EDIT_POST
 } from '../actions'
 
-
 function post (state = {}, action) {
   const { post } = action
   switch (action.type) {
