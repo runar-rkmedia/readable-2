@@ -4,7 +4,7 @@ import { getPost, deletePost, editPost  } from '../actions'
 import { Link, withRouter } from 'react-router-dom'
 import serializeForm from 'form-serialize'
 import Comments from './Comments'
-import CommentForm from './CommentForm'
+import LeaveComment from './LeaveComment'
 import {
   Button,
   Modal,
@@ -101,7 +101,7 @@ class Post extends Component {
           </h1>
         </div>
 
-        <CommentForm
+        <LeaveComment
           parentId={ post.id }/>
 
         <div className='commentsHeading'>Comments</div>

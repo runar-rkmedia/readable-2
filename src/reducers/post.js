@@ -12,7 +12,7 @@ function post (state = {}, action) {
       return {
         ...post
       }
-    case CREATE_POST:
+    case CREATE_POST :
       return {
         ...post
       }
