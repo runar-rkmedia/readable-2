@@ -1,26 +1,30 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { createComment } from '../actions'
+import { createComment, deleteComment, editComment  } from '../actions'
 import serializeForm from 'form-serialize'
+
 import {
   Button,
   Form,
   FormGroup,
   Input } from 'reactstrap'
 
-class CommentForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      editing: false,
-      author: '',
-      body: ''
-    };
-  }
+class CommentFields extends Component {
+  state = {
+    body: '',
+    author: ''
+  };
 
   componentDidMount () {
-    this.props.createComment(this.props.parentId)
-  };
+    if (this.props.editing) {
+      this.setState({
+        author: this.props.author,
+        body: this.props.body,
+      });
+    } else {
+      this.props.createComment(this.props.parentId)
+    }
+  }
 
   handleChange = event => {
     const { name, value } = event.target;
@@ -32,9 +36,14 @@ class CommentForm extends Component {
 
     const values = serializeForm(event.target, { hash: true })
     values["timestamp"] = Date.now()
-    values["id"] = Date.now()
-    values["parentId"] = this.props.parentId
-    this.props.createComment(values)
+    if (this.props.editing) {
+      values["commentID"] = this.props.commentID
+      this.props.editComment(values)
+    } else {
+      values["parentId"] = this.props.parentId
+      values["id"] = Date.now()
+      this.props.createComment(values)
+    }
     window.location.reload()
   };
 
@@ -44,9 +53,8 @@ class CommentForm extends Component {
     const emptyFields = authorField.length > 3 && bodyField.length > 10
 
     return (
-      <div className='col-sm-12'>
-        <hr />
-        <h3>Leave a comment</h3>
+      <div>
+
         <Form onSubmit={ this.handleSubmit }>
           <FormGroup>
             <Input
@@ -79,11 +87,13 @@ const mapStateToProps = (comment) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createComment: (comment) => dispatch(createComment(comment))
+    createComment: (comment) => dispatch(createComment(comment)),
+    deleteComment: (commentID) => dispatch(deleteComment(commentID)),
+    editComment: (commentID) => dispatch(editComment(commentID))
   }
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CommentForm)
+)(CommentFields)

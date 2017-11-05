@@ -109,3 +109,14 @@ export function deleteComment(commentID) {
       })
   )}
 }
+
+export const EDIT_COMMENT = 'EDIT_COMMENT'
+export function editComment({ commentID, timestamp, body }) {
+  return dispatch => {
+    FetchAPI.editComment({ commentID, timestamp, body })
+      .then(comment => dispatch({
+        type: EDIT_COMMENT,
+        comment
+      })
+  )}
+}

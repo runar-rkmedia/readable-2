@@ -1,6 +1,7 @@
 import {
   CREATE_COMMENT,
-  DELETE_COMMENT
+  DELETE_COMMENT,
+  EDIT_COMMENT
 } from '../actions'
 
 function comment (state = {}, action) {
@@ -12,7 +13,13 @@ function comment (state = {}, action) {
         ...comment
       }
     case DELETE_COMMENT :
-      return { ...comment }
+      return {
+        ...comment
+      }
+    case EDIT_COMMENT :
+      return {
+        ...comment
+      }
     default :
       return state
   }
