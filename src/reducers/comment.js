@@ -1,7 +1,7 @@
 import {
   CREATE_COMMENT,
   DELETE_COMMENT,
-  EDIT_COMMENT
+  EDIT_COMMENT,
 } from '../actions'
 
 function comment (state = {}, action) {

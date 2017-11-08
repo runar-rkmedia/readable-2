@@ -5,6 +5,7 @@ import { Link, withRouter } from 'react-router-dom'
 import serializeForm from 'form-serialize'
 import Comments from './Comments'
 import LeaveComment from './LeaveComment'
+import VotePost from './VotePost'
 import {
   Button,
   Modal,
@@ -39,7 +40,6 @@ class Post extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-
     const values = serializeForm(event.target, { hash: true })
     values["postID"] = this.props.post.id
     this.props.editPost(values)
@@ -70,6 +70,10 @@ class Post extends Component {
         <div className='post-heading'>
           <h1>{ post.title }</h1>
         </div>
+        <VotePost
+          voteScore={ post.voteScore }
+          postID={ post.id }/>
+
         <div className='post-body'>
           <div className='meta text-muted'>
             Written by { post.author } »

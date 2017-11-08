@@ -120,3 +120,26 @@ export function editComment({ commentID, timestamp, body }) {
       })
   )}
 }
+
+export const DOWN_VOTE_POST = 'DOWN_VOTE_POST'
+export function downVotePost(id) {
+  return dispatch => {
+    FetchAPI.downVotePost(id)
+      .then(posts => dispatch({
+        type: DOWN_VOTE_POST,
+        posts
+    })
+  )}
+}
+
+
+export const UP_VOTE_POST = 'UP_VOTE_POST'
+export function upVotePost(id) {
+  return dispatch => {
+    FetchAPI.upVotePost(id)
+      .then(posts => dispatch({
+        type: UP_VOTE_POST,
+        posts
+    })
+  )}
+}

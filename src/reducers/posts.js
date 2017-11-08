@@ -16,6 +16,7 @@ function posts (state = initialState, action) {
 
     case GET_CATEGORY_POSTS :
       return posts.filter(post => !post.deleted)
+
     default :
       return state
   }

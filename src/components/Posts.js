@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getAllPosts, getByCategory } from '../actions'
-import { Link } from 'react-router-dom'
+import { getAllPosts, getByCategory, deletePost } from '../actions'
+import { Link, withRouter } from 'react-router-dom'
 import Moment from 'react-moment'
+import VotePost from './VotePost'
 
 import '../css/Posts.css'
 
@@ -34,6 +35,11 @@ class Posts extends Component {
      }
   }
 
+  handleRemove = event => {
+    this.props.deletePost(event)
+    window.location.reload()
+  }
+
   render() {
 
    const { posts } = this.props
@@ -48,8 +54,7 @@ class Posts extends Component {
               value={this.props.value}
               onChange={(e) => this.filterPosts(e.target.value)}
               className="form-control"
-              disabled={!hasPosts}
-              >
+              disabled={!hasPosts}>
               <option value=''>Most Votes</option>
               <option value='votes' >List Voted</option>
               <option value='posted'>Date Posted</option>
@@ -59,16 +64,26 @@ class Posts extends Component {
 
       {hasPosts ? posts.map((post, i) => (
           <div key={i} className='post-list'>
-            <h3 className='post-name'>
-              <Link to={`/posts/${post.id}`}>
-                { post.title }
-              </Link>
-            </h3>
+            <div>
+              <VotePost
+                voteScore={ post.voteScore }
+                postID={ post.id }/>
+              <h3 className='post-name'>
+                <Link to={`/posts/${post.id}`}>
+                  { post.title }
+                </Link>
+              </h3>
+            </div>
+
             <div className='meta text-muted'>
               Comment { post.commentCount } »
               Category { post.category }  »
-              Published <Moment fromNow>{ post.timestamp }</Moment>  »
-              Votes { post.voteScore }</div>
+              Published <Moment fromNow>{ post.timestamp }</Moment> »
+              { ' ' }
+              <Link to={``} onClick={this.handleRemove.bind(this, post.id)}>
+                Delete Post
+              </Link>
+            </div>
           </div>
         )) : (
           <div className='noComments'>
@@ -88,10 +103,11 @@ const mapStateToProps = ({ posts }) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getAllPosts: () => dispatch(getAllPosts()),
-    getByCategory: (id) => dispatch(getByCategory(id))  }
+    getByCategory: (id) => dispatch(getByCategory(id)),
+    deletePost: (id) => dispatch(deletePost(id)) }
 }
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(Posts)
+)(Posts))
