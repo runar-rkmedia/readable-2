@@ -21,10 +21,6 @@ function post (state = initialState, action) {
       return {
         ...post
       }
-    case VOTE_POST :
-      return {
-        ...post
-      }
     case DELETE_POST :
       return {
         ...state.posts, [action.id]: null
