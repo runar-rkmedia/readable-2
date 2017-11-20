@@ -1,32 +1,29 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { downVotePost, upVotePost } from '../actions'
+import { votePost } from '../actions'
+import VoteScore from './VoteScore'
+
 
 class VotePost extends Component {
 
-  upVote = () => {
-    this.props.upVotePost(this.props.postID);
-  }
-
-  downVote = () => {
-    this.props.downVotePost(this.props.postID);
+  votePostOption = ({id, option}) => {
+    this.props.votePost({id, option})
   }
 
   render() {
     return (
       <div className="vote-post">
 
-        <div>
-          <div onClick={ this.upVote }>
+          <div onClick={() => this.votePostOption({id: this.props.postID, option: 'upVote'})}>
             <i className="fa fa-chevron-up" aria-hidden="true"></i>
           </div>
-          <div id="voteScore">
-            { this.props.voteScore }
-          </div>
-          <div onClick={ this.downVote }>
+          <VoteScore
+            voteScore={ this.props.voteScore }
+            />
+
+          <div onClick={() => this.votePostOption({id: this.props.postID, option: 'downVote'})}>
             <i className="fa fa-chevron-down" aria-hidden="true"></i>
           </div>
-        </div>
 
       </div>
     );
@@ -35,8 +32,7 @@ class VotePost extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    upVotePost: (id) => dispatch(upVotePost(id)),
-    downVotePost: (id) => dispatch(downVotePost(id))
+    votePost: (id) => dispatch(votePost(id))
   }
 }
 

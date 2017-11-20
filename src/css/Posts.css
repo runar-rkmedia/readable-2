@@ -13,3 +13,41 @@
        -o-transform: rotate(-90deg);
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
+
+.post-list {
+  margin-bottom: 80px;
+  border-bottom: 1px dashed #999;
+}
+
+.post-list .vote-post {
+  float: left;
+}
+
+
+.btn-success.disabled,
+.btn-success:disabled {
+  background-color: #fff !important;
+  border-color: #fff !important;
+}
+
+.vote-up,
+.vote-down {
+  display: block;
+  float: left;
+  margin-right: 10px;
+  padding-top: 3px;
+  padding-left: 6px;
+  width: 25px;
+  height: 25px;
+  font-size: 0.9375rem;
+  border-radius: 50%;
+  color: #fff;
+}
+
+.vote-up {
+  background-color: #9898fc;
+}
+
+.vote-down {
+  background-color: #d35367;
+}

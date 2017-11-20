@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { createPost } from '../actions'
 import serializeForm from 'form-serialize'
@@ -138,3 +139,10 @@ export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
 )(CreatePost))
+
+CreatePost.propTypes = {
+  categories: PropTypes.array.isRequired,
+  createPost: PropTypes.func.isRequired,
+  history: PropTypes.object,
+  location: PropTypes.object
+}

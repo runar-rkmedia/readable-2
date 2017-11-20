@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Moment from 'react-moment'
 import { Button } from 'reactstrap'
 import CommentFields from './CommentFields'
-import { deleteComment } from '../actions'
+import { deleteComment, voteComment } from '../actions'
 import {
   Modal,
   ModalHeader,
@@ -31,6 +31,10 @@ class Comment extends Component {
     window.location.reload()
   }
 
+  voteOption = ({id, option}) => {
+    this.props.voteComment({id, option})
+  }
+
   render() {
     const { comment } = this.props
 
@@ -44,9 +48,15 @@ class Comment extends Component {
             <p>{ comment.body }</p>
           </div>
           <p className='meta text-muted attribution'>
-            Votes { comment.voteScore }, |
+            <span className="vote-up" onClick={() => this.voteOption({id: comment.id, option: 'upVote'})}>
+              <i className="fa fa-thumbs-o-up" aria-hidden="true"></i>
+            </span>
+            <span className="vote-down" onClick={() => this.voteOption({id: comment.id, option: 'downVote'})}>
+              <i className="fa fa-thumbs-down" aria-hidden="true"></i>
+            </span>
+            Score { comment.voteScore }, |
             Author { comment.author }  |
-            Posted <Moment>{ comment.timestamp }</Moment>   |
+            Posted <Moment fromNow ago>{ comment.timestamp }</Moment> ago.  |
             { ' ' }
             <Button
               color='link'
@@ -70,6 +80,7 @@ class Comment extends Component {
               editing={ this.state.editing }
               body={ comment.body }
               commentID={ comment.id }
+              closeModal={ this.toggleComment }
               author={ comment.author }/>
           </ModalBody>
         </Modal>
@@ -80,7 +91,8 @@ class Comment extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    deleteComment: (commentID) => dispatch(deleteComment(commentID))
+    deleteComment: (commentID) => dispatch(deleteComment(commentID)),
+    voteComment: (id) => dispatch(voteComment(id))
   }
 }
 

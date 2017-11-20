@@ -1,17 +1,15 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getAllPosts, getByCategory, deletePost } from '../actions'
 import { Link, withRouter } from 'react-router-dom'
 import Moment from 'react-moment'
 import VotePost from './VotePost'
 
+
 import '../css/Posts.css'
 
 class Posts extends Component {
-
-   state = {
-      posts: []
-    }
 
   componentDidMount () {
     const categoryTitle = this.props.categoryTitle
@@ -35,9 +33,14 @@ class Posts extends Component {
      }
   }
 
+
+  onVoteChangeHandler = id => {
+    console.log('this should update the post');
+  }
+
   handleRemove = event => {
     this.props.deletePost(event)
-    window.location.reload()
+    //window.location.reload()
   }
 
   render() {
@@ -111,3 +114,13 @@ export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
 )(Posts))
+
+
+Posts.propTypes = {
+  deletePosts: PropTypes.func,
+  editPosts: PropTypes.func,
+  getByCategory: PropTypes.func,
+  history: PropTypes.object,
+  location: PropTypes.object,
+  match: PropTypes.object,
+}

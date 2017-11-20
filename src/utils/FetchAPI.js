@@ -57,10 +57,10 @@ export const editPost = ({postID, title, body}) =>
 export const deletePost = (post) =>
   axios.delete(`${url}/posts/${post}`, { headers })
 
-export const downVotePost = (id) =>
-  axios.post(`${url}/posts/${id}`, { option: "downVote" }, { headers })
-    .then(posts => posts.data)
+export const voteComment = ({id, option}) =>
+  axios.post(`${url}/comments/${id}`, { option: option }, { headers })
+    .then(comment => comment.data)
 
-export const upVotePost = (id) =>
-  axios.post(`${url}/posts/${id}`, { option: "upVote" }, { headers })
-    .then(posts => posts.data)
+export const votePost = ({id, option}) =>
+  axios.post(`${url}/posts/${id}`, { option: option }, { headers })
+    .then(post => post.data)

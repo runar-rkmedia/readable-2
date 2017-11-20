@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getPost, deletePost, editPost  } from '../actions'
 import { Link, withRouter } from 'react-router-dom'
@@ -82,14 +83,14 @@ class Post extends Component {
           </div>
           <p> { post.body }</p>
           <Button
-            color='success'
+            color='secondary'
             size='sm'
             onClick={ this.handleRemove }>
               Delete
           </Button>
           {' '}
           <Button
-            color='danger'
+            color='secondary'
             size='sm'
             onClick={this.toggle}>
               Edit
@@ -190,3 +191,13 @@ export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
 )(Post))
+
+Post.propTypes = {
+  deletePost: PropTypes.func,
+  editPost: PropTypes.func,
+  getPost: PropTypes.func,
+  history: PropTypes.object,
+  location: PropTypes.object,
+  match: PropTypes.object,
+  post: PropTypes.object
+}

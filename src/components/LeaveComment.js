@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import CommentFields from './CommentFields'
 
 class CommentForm extends Component {
@@ -25,3 +26,7 @@ class CommentForm extends Component {
 }
 
 export default CommentForm
+
+CommentForm.propTypes = {
+  parentId: PropTypes.string
+}

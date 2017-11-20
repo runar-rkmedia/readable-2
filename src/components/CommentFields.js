@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { createComment, deleteComment, editComment  } from '../actions'
 import serializeForm from 'form-serialize'
@@ -44,7 +45,8 @@ class CommentFields extends Component {
       values["id"] = Date.now()
       this.props.createComment(values)
     }
-    window.location.reload()
+    //window.location.reload()
+    this.props.closeModal()
   };
 
   render() {
@@ -97,3 +99,15 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(CommentFields)
+
+CommentFields.propTypes = {
+  author: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  editing: PropTypes.bool,
+  parentId: PropTypes.string
+}
+
+Input.propTypes = {
+  body: PropTypes.string,
+  name: PropTypes.string,
+}
