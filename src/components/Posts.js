@@ -100,7 +100,7 @@ class Posts extends Component {
 }
 
 const mapStateToProps = ({ posts }) => {
-  return { posts: posts || [] }
+  return { posts: Object.keys(posts).map(key => posts[key]), }
 }
 
 const mapDispatchToProps = (dispatch) => {
